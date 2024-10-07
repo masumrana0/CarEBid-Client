@@ -1,0 +1,26 @@
+{
+    "_id": "lkasdjflkdjslkj243590",
+    "photos": {
+        "mainPhoto": "url",
+        "others": [
+            "url",
+            "url",
+            "url"
+        ]
+    },
+    "make": "BMW",
+    "model": "# Seris",
+    "mileage": "103,000 Miles Shown - TMU",
+    "vin": "w392809abb34dkf",
+    "titleStatus": "Clean (VA)",
+    "location": "Flushing, NY 11355",
+    "seller": "9382ojdfsjflkdsjflk",
+    "engine": "3.0L 16",
+    "drivetrain": "Rear-Wheel drive",
+    "transmission": "Manual (5-Speed)",
+    "bodyStyle": "Sedan",
+    "exteriorColor": "Alpine white",
+    "interiorColor": "Black",
+    "sellerType": "Private Party"
+
+}
