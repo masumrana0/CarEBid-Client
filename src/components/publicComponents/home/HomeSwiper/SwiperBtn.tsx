@@ -1,14 +1,27 @@
-import React from 'react';
-import { useSwiper } from 'swiper/react';
+"use client";
+import React from "react";
+import { useSwiper } from "swiper/react";
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 
 export const SwiperNavButtons = () => {
-    const swiper = useSwiper();
+  const swiper = useSwiper();
 
-    return (
-        <div className=" bg-[#e5dfd9] w-12 h-8 space-x-1 absolute top-[93%] transform -translate-y-1/2   right-5 flex justify-center items-center     rounded z-10 ">
-            <button className='font-bold text-xl hover:text-2xl transition-transform duration-300  text-gray-600 hover:text-gray-800' onClick={() => swiper.slidePrev()}> <AiOutlineLeft /></button>
-            <button className='font-bold text-xl hover:text-2xl transition-transform duration-300  text-gray-600 hover:text-gray-800' onClick={() => swiper.slideNext()}> <AiOutlineRight /></button>
-        </div>
-    );
+  return (
+    <div className="bg-transparent w-auto h-auto absolute top-[85%] right-5 flex justify-center items-center space-x-2 z-10 ">
+      <button
+        className="p-2 rounded-full bg-white/30 backdrop-blur-md transition-all duration-300 text-gray-700 hover:text-gray-900 hover:bg-white/50 hover:scale-105 active:scale-95 focus:outline-none shadow-lg"
+        onClick={() => swiper.slidePrev()}
+        aria-label="Previous Slide"
+      >
+        <AiOutlineLeft size={24} />
+      </button>
+      <button
+        className="p-2 rounded-full bg-white/30 backdrop-blur-md transition-all duration-300 text-gray-700 hover:text-gray-900 hover:bg-white/50 hover:scale-105 active:scale-95 focus:outline-none shadow-lg"
+        onClick={() => swiper.slideNext()}
+        aria-label="Next Slide"
+      >
+        <AiOutlineRight size={24} />
+      </button>
+    </div>
+  );
 };

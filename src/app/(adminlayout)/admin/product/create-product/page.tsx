@@ -1,10 +1,10 @@
-import CreateProductComponentPage from "@/components/dashboardComponents/create-product/Page";
+import CreateProduct from "@/components/common/product/CreateProduct";
 import React from "react";
 
 const CreateProductPage = () => {
   return (
     <>
-      <CreateProductComponentPage />
+      <CreateProduct />
     </>
   );
 };

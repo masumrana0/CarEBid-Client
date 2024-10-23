@@ -1,12 +1,12 @@
-import AdminBoardHome from "@/components/dashboardComponents/adminBoardHome/Page";
+import AdminBoardHome from "@/components/dashboard/adminBoardHome/Page";
 import AdminProtect from "@/components/shared/protectors/AdminProtect";
 import React from "react";
 
 const HomePage = () => {
   return (
-    <AdminProtect>
-      <AdminBoardHome />
-    </AdminProtect>
+    // <AdminProtect>
+    <AdminBoardHome />
+    // </AdminProtect>
   );
 };
 

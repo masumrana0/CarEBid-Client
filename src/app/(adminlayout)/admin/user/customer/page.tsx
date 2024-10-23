@@ -1,4 +1,4 @@
-import CustomerComponentPage from "@/components/dashboardComponents/customer/Page";
+import CustomerComponentPage from "@/components/dashboard/customer/Page";
 import React from "react";
 
 const CustomerPage = () => {

@@ -1,11 +1,40 @@
 export interface IProduct {
   _id?: string;
-  category: string;
-  title: string;
-  warranty: string; // Warranty duration as a string (e.g., "1 year")
-  emi: number; // Number of EMI installments
-  price: number;
-  company: string;
-  photo: string | any; // URL or path to the image
-  status: "in stock" | "out of stock"; // Predefined statuses
+  photos: {
+    mainPhoto: string;
+    others: string[];
+  };
+  make: string;
+  model: string;
+  mileage: string;
+  vin: string;
+  titleStatus: string;
+  location: string;
+  seller: {
+    id: string;
+    name: string;
+    profilePhoto?: string;
+  };
+  engine: string;
+  drivetrain: string;
+  transmission: string;
+  bodyStyle: string;
+  exteriorColor: string;
+  interiorColor: string;
+  sellerType: string;
+  highlights: string[];
+  equipment: string[];
+  modification: string[];
+  recentServiceHistory: string[];
+  otherItemsIncludedInSale: string[];
+  ownershipHistory: string;
+  sellerNotes: string[];
+  videos: string[];
+  views: number;
+  bids: {
+    bidsHistory: any[];
+    minBid: number;
+    maxBid: number;
+  };
+  comments: any[];
 }

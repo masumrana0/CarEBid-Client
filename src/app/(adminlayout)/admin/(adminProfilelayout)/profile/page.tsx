@@ -1,4 +1,4 @@
-import ProfileComponentPage from "@/components/dashboardComponents/profile/Page";
+import ProfileComponentPage from "@/components/dashboard/profile/Page";
 import PrivateRoute from "@/components/shared/protectors/PrivateRoute";
 import React from "react";
 

@@ -13,9 +13,13 @@ import AuthWithThirdPerty from "../authWithThirdPerty";
 import ReUseAbleInput from "@/components/shared/inputs/ReUseableInput";
 
 // SignInPage Component
-const SignInPage: React.FC<{ setAuthState: React.Dispatch<SetStateAction<number>> }> = ({ setAuthState }) => {
+const SignInPage: React.FC<{
+  setAuthState: React.Dispatch<SetStateAction<number>>;
+}> = ({ setAuthState }) => {
   const [signin, { isLoading }] = useSigninMutation();
-  const [validationMessage, setValidationMessage] = useState<string | null>(null);
+  const [validationMessage, setValidationMessage] = useState<string | null>(
+    null,
+  );
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -55,14 +59,16 @@ const SignInPage: React.FC<{ setAuthState: React.Dispatch<SetStateAction<number>
         setValidationMessage(errorMsg);
       }
     },
-    [signin, dispatch, router]
+    [signin, dispatch, router],
   );
 
   // Render the component
   return (
     <div className="flex items-center justify-center relative">
       <div>
-        <h2 className="font-bold text-dark text-3xl text-center mb-2">Sign In</h2>
+        <h2 className="font-bold text-dark text-3xl text-center mb-2">
+          Sign In
+        </h2>
         <p className="text-lg text-center mb-6">
           Need to create an account?{" "}
           <button className="text-primary" onClick={() => setAuthState(0)}>
@@ -101,14 +107,19 @@ const SignInPage: React.FC<{ setAuthState: React.Dispatch<SetStateAction<number>
           </div>
 
           <div className="mb-3">
-            <button onClick={() => setAuthState(3)} className="underline text-md text-primary">
+            <button
+              onClick={() => setAuthState(3)}
+              className="underline text-md text-primary"
+            >
               Forgot password?
             </button>
           </div>
 
           {/* Validation Message */}
           {validationMessage && (
-            <p className="text-red-500 my-2 text-sm md:text-md">{validationMessage}</p>
+            <p className="text-red-500 my-2 text-sm md:text-md">
+              {validationMessage}
+            </p>
           )}
 
           {/* Submit Button */}
@@ -121,8 +132,6 @@ const SignInPage: React.FC<{ setAuthState: React.Dispatch<SetStateAction<number>
               Sign In
             </Button>
           </div>
-
-
         </form>
       </div>
     </div>

@@ -12,14 +12,15 @@ import SignupEmail from "./SignupEmail";
 import ReUseAbleInput from "@/components/shared/inputs/ReUseableInput";
 import { SignUpSchema } from "@/schema/auth.schema";
 
-
 interface ISignUpFormValues {
   password: string;
   confirmPassword: string;
   name: string;
 }
 
-const SignUpPage: React.FC<{ setAuthState: React.Dispatch<SetStateAction<number>> }> = ({ setAuthState }) => {
+const SignUpPage: React.FC<{
+  setAuthState: React.Dispatch<SetStateAction<number>>;
+}> = ({ setAuthState }) => {
   const [isNext, setNext] = useState(false);
   const [email, setEmail] = useState<string | null>(null);
 
@@ -38,9 +39,8 @@ const SignUpPage: React.FC<{ setAuthState: React.Dispatch<SetStateAction<number>
 
   // Submit handler
   const onSubmit = (data: ISignUpFormValues) => {
-
     if (isNext) {
-      console.log({ ...data, email: email })
+      console.log({ ...data, email: email });
       // Proceed with signup
       signup({ ...data, email: email } as ISignUpData)
         .unwrap()
@@ -50,7 +50,8 @@ const SignUpPage: React.FC<{ setAuthState: React.Dispatch<SetStateAction<number>
           router.push("/"); // Redirect to homepage
         })
         .catch((error: any) => {
-          const errorMessage = error?.message || "An unexpected error occurred.";
+          const errorMessage =
+            error?.message || "An unexpected error occurred.";
           message.error(errorMessage);
         });
     }
@@ -64,7 +65,9 @@ const SignUpPage: React.FC<{ setAuthState: React.Dispatch<SetStateAction<number>
         <>
           <p className="mb-3 text-md md:text-lg my-3 text-center">
             Already have an account?{" "}
-            <button onClick={() => setAuthState(1)} className="text-primary">Sign in here</button>
+            <button onClick={() => setAuthState(1)} className="text-primary">
+              Sign in here
+            </button>
           </p>
 
           {/* Third-party authentication */}

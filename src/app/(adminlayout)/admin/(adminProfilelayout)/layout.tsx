@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import ProfilePictureUploader from "@/components/dashboardComponents/profile/ProfilePictureUploader";
+
 import { IUser } from "@/Interface/user";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import PageLoader from "@/components/shared/spinners/PageLoader";
 import { useAppSelector } from "@/Redux/hooks";
-import EmailVerificationAlert from "@/components/dashboardComponents/profile/EmailVerificationAlert";
+import EmailVerificationAlert from "@/components/dashboard/profile/EmailVerificationAlert";
+import ProfilePictureUploader from "@/components/dashboard/profile/ProfilePictureUploader";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   // State to handle client-side rendering

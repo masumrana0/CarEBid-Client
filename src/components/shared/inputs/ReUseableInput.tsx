@@ -6,7 +6,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 interface IInput<T extends Record<string, any>> {
   name: keyof T | `${string}.${string}`;
-  icon?: React.ReactNode
+  icon?: React.ReactNode;
   type?: string;
   value?: string | string[] | undefined;
   id?: string;
@@ -61,9 +61,7 @@ const ReUseAbleInput = <T extends Record<string, any>>({
         )}
       >
         <span className={` md:text-lg ${errorMessage && "text-red-500"} `}>
-          {
-            icon && icon
-          }
+          {icon && icon}
         </span>
         <input
           {...(register && register(name as any))}
@@ -79,10 +77,7 @@ const ReUseAbleInput = <T extends Record<string, any>>({
             onClick={() => setVisible(!isVisible)}
             className="ml-2"
           >
-            {
-              isVisible ? <FaRegEye /> : (< FaRegEyeSlash />)
-            }
-
+            {isVisible ? <FaRegEye /> : <FaRegEyeSlash />}
           </button>
         )}
       </div>

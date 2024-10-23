@@ -14,7 +14,9 @@ const forgotPasswordSchema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
 });
 
-const ForgotPassword: React.FC<{ setAuthState: React.Dispatch<SetStateAction<number>> }> = ({ setAuthState }) => {
+const ForgotPassword: React.FC<{
+  setAuthState: React.Dispatch<SetStateAction<number>>;
+}> = ({ setAuthState }) => {
   const [forgotPassword, { isLoading, isError }] = useForgotPasswordMutation();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -37,11 +39,10 @@ const ForgotPassword: React.FC<{ setAuthState: React.Dispatch<SetStateAction<num
 
       if (res?.statusCode === 200) {
         message.success("Please check your email inbox.");
-        setErrorMessage('Please check your email inbox.')
+        setErrorMessage("Please check your email inbox.");
         reset(); // Reset the form on successful submission
       }
     } catch (error: any) {
-
       message.error(error.message);
       setErrorMessage(error.message || "An unexpected error occurred.");
     }
@@ -51,19 +52,26 @@ const ForgotPassword: React.FC<{ setAuthState: React.Dispatch<SetStateAction<num
     <div className="p-3 w-full">
       <div className="mb-3 text-center">
         <h2 className="text-3xl font-bold text-gray-900 ">Forgot Password</h2>
-        <button className="text-md text-primary my-1" onClick={() => setAuthState(3)}>
+        <button
+          className="text-md text-primary my-1"
+          onClick={() => setAuthState(3)}
+        >
           Back to Sign In
         </button>
         <p className="text-gray-600 mt-2">
-          Enter your email address and we&apos;ll send you a link to reset your password.
+          Enter your email address and we&apos;ll send you a link to reset your
+          password.
         </p>
       </div>
 
       {/* Display error message */}
       {errorMessage && (
         <div
-          className={`p-4 mb-4 border-l-4 ${ isError ? "bg-red-100 border-red-500 text-red-700" : "bg-green-100 border-green-500 text-green-700"
-            }`}
+          className={`p-4 mb-4 border-l-4 ${
+            isError
+              ? "bg-red-100 border-red-500 text-red-700"
+              : "bg-green-100 border-green-500 text-green-700"
+          }`}
         >
           {errorMessage}
         </div>
@@ -81,7 +89,6 @@ const ForgotPassword: React.FC<{ setAuthState: React.Dispatch<SetStateAction<num
             label="Email Address"
             placeholder="Enter your account email"
             register={register}
-
           />
         </div>
 

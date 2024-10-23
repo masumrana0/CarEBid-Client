@@ -1,3 +1,4 @@
+"use client";
 export const setToLocalStorageAsStringify = (key: string, data: any) => {
   if (!key || typeof window === "undefined") {
     return "";

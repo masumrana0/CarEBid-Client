@@ -5,12 +5,13 @@ import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 
 // components
 import { CiSettings } from "react-icons/ci";
-import LeftSidebar from "@/components/dashboardComponents/sidebar/leftSidebar";
-import DashBoardNav from "@/components/dashboardComponents/navbar";
-import RightSidebar from "@/components/dashboardComponents/sidebar/rightSidebar";
+
 import { IDNavMenuItem } from "@/Interface/content";
 import { toggleLayoutSidebar } from "@/Redux/Slices/dashboardLayout/layoutSlice";
 import { DAdminAccountNavigation } from "@/content/DNavigationMenu";
+import LeftSidebar from "@/components/dashboard/sidebar/leftSidebar";
+import DashBoardNav from "@/components/dashboard/navbar";
+import RightSidebar from "@/components/dashboard/sidebar/rightSidebar";
 
 const DashBoardLayout = ({ children }: { children: React.ReactNode }) => {
   // Redux

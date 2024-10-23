@@ -51,7 +51,7 @@ export const getTokenInfo = (): any => {
 export const Logout = () => {
   localStorage.removeItem(PROFILE_INFO_KEY);
   localStorage.removeItem(authKey);
-  localStorage.removeItem(authInfoKey)
+  localStorage.removeItem(authInfoKey);
   return;
   // localStorage.clear();
 };

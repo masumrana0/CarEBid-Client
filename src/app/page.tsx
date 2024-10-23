@@ -7,7 +7,6 @@ export const metadata: Metadata = {
   description: "CarEBid Home Page",
 };
 const HomePage = () => {
-
   return (
     <main className="px-10">
       <Navbar />
