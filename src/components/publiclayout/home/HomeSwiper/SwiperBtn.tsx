@@ -7,20 +7,20 @@ export const SwiperNavButtons = () => {
   const swiper = useSwiper();
 
   return (
-    <div className="bg-transparent w-auto h-auto absolute top-[85%] right-5 flex justify-center items-center space-x-2 z-10 ">
+    <div className="bg-transparent w-auto h-auto absolute top-[80%] lg:top-[85%] right-5 flex justify-center items-center space-x-2 z-10 ">
       <button
         className="p-2 rounded-full bg-white/30 backdrop-blur-md transition-all duration-300 text-gray-700 hover:text-gray-900 hover:bg-white/50 hover:scale-105 active:scale-95 focus:outline-none shadow-lg"
         onClick={() => swiper.slidePrev()}
         aria-label="Previous Slide"
       >
-        <AiOutlineLeft size={24} />
+        <AiOutlineLeft   />
       </button>
       <button
         className="p-2 rounded-full bg-white/30 backdrop-blur-md transition-all duration-300 text-gray-700 hover:text-gray-900 hover:bg-white/50 hover:scale-105 active:scale-95 focus:outline-none shadow-lg"
         onClick={() => swiper.slideNext()}
         aria-label="Next Slide"
       >
-        <AiOutlineRight size={24} />
+        <AiOutlineRight   />
       </button>
     </div>
   );

@@ -16,11 +16,10 @@ import SlideContent from "./SlideContent";
 // Import navigation buttons dynamically
 const SwiperNavButtons = dynamic(
   () => import("./SwiperBtn").then((mod) => mod.SwiperNavButtons),
-  { ssr: false },
+  { ssr: false }
 );
 
 const HomeSwiper = () => {
-  console.log(products);
   return (
     <div className="container mx-auto mt-3 relative">
       <Swiper
@@ -39,23 +38,6 @@ const HomeSwiper = () => {
             <SlideContent product={product} />
           </SwiperSlide>
         ))}
-
-        {/* 
-        <SwiperSlide>
-          <div className="h-[30rem] w-full border rounded bg-green-500"></div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="h-[30rem] w-full border rounded bg-violet-500"></div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="h-[30rem] w-full border rounded bg-blue-500"></div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="h-[30rem] w-full border rounded bg-orange-500"></div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="h-[30rem] w-full border rounded bg-yellow-500"></div>
-        </SwiperSlide> */}
 
         {/* Navigation buttons */}
         <SwiperNavButtons />

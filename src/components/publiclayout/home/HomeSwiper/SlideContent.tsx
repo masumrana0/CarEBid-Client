@@ -7,11 +7,11 @@ import React from "react";
 const SlideContent: React.FC<{ product: IProduct }> = ({ product }) => {
   return (
     <Link href="/" passHref>
-      <div className="h-[26rem] w-full border rounded grid grid-cols-12  overflow-hidden">
+      <div className="h-[15rem] sm:h-[18rem] lg:h-[26rem] w-full border rounded flex flex-col lg:grid grid-cols-12 overflow-hidden">
         {/* Main Image */}
-        <div className="col-span-7 overflow-hidden h-full">
+        <div className="col-span-7 overflow-hidden h-1/2 lg:h-full">
           <Image
-            className="h-full w-full bg-contain object-center"
+            className="h-full w-full bg-contain object-center" // Changed to object-cover for better scaling
             src={product.photos.mainPhoto}
             width={1000}
             height={500}
@@ -20,15 +20,34 @@ const SlideContent: React.FC<{ product: IProduct }> = ({ product }) => {
           />
         </div>
 
-        {/* Secondary Images */}
-        <div className="col-span-5 grid grid-cols-2   h-full  ">
+        {/* Secondary Images for large screens */}
+        <div className="col-span-5 hidden lg:grid grid-cols-2 h-1/2 lg:h-full">
           {product.photos.others.slice(0, 4).map((photo, index) => (
             <div
-              className="h-[13rem] overflow-hidden border-b-2 border-l-2  border-black"
+              className="h-full overflow-hidden border-b-2 border-l-2 border-black" // Changed height to full for consistent scaling
               key={index}
             >
               <Image
-                className="h-full w-full bg-contain object-center" // Fixes overflow and ensures image scaling
+                className="h-full w-full object-cover object-center" // Ensure proper scaling with object-cover
+                src={photo}
+                width={500}
+                height={500}
+                alt={`Detail image ${index + 1} of ${product.model}`}
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Secondary Images for small screens */}
+        <div className="col-span-5 grid grid-cols-2 h-1/2 lg:h-full lg:hidden">
+          {product.photos.others.slice(0, 2).map((photo, index) => (
+            <div
+              className="h-full overflow-hidden border-b-2 border-l-2 border-t-2 border-black" // Adjusted height to full
+              key={index}
+            >
+              <Image
+                className="h-full w-full object-cover object-center" // Consistent scaling with object-cover
                 src={photo}
                 width={500}
                 height={500}

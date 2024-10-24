@@ -1,3 +1,4 @@
+import LandingHomePage from "@/components/publiclayout/home/Page";
 import Navbar from "@/components/publiclayout/navbar";
 import { Metadata } from "next";
 
@@ -9,6 +10,7 @@ const HomePage = () => {
   return (
     <main className="px-10">
       <Navbar />
+      <LandingHomePage />
     </main>
   );
 };

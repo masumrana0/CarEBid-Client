@@ -27,7 +27,7 @@ const SearchBar = () => {
     >
       <HiOutlineMagnifyingGlass className="text-xl 2xl:text-2xl" />
       <input
-        className="outline-none border-none bg-inherit w-full py-3 text-inherit text-black"
+        className="outline-none border-none bg-inherit w-full h-full text-inherit text-black"
         type="text"
         placeholder="Search for cars (e.g., BMW, Audi, Ford)"
         value={searchTerm}
