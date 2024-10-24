@@ -1,3 +1,11 @@
+/**
+ * Title: 'Navar develop By Masum Rana'
+ * Description: ''
+ * Author: 'Masum Rana'
+ * Date: 24-10-2024
+ *
+*/
+
 "use client";
 import Logo from "@/components/shared/logo";
 import React from "react";
@@ -14,29 +22,29 @@ const Navbar: React.FC = () => {
   const isLoggedIn = useAppSelector((state) => state.authReducer.isLoggedIn);
 
   return (
-    <header className="py-2 bg-white border-b  ">
+    <header className="py-2 bg-white border-b    ">
       <nav className="container mx-auto flex items-center justify-between w-full">
         {/* Logo */}
         <Logo />
 
         {/* Navigation Links */}
-        <div className="hidden lg:flex items-center space-x-6">
+        <div className="hidden lg:flex items-center lg:space-x-3 2xl:space-x-6">
           <AuctionDropdown />
           <Link
             href="/"
-            className="text-lg font-semibold text-gray-800 bg-green-400 py-2 px-4 rounded-full hover:bg-green-500 transition-colors duration-200"
+            className="lg:text-md 2xl:text-lg font-semibold text-gray-800 bg-green-400 2xl:py-2 py-1 px-3 2xl:px-4 rounded-full hover:bg-green-500 transition-colors duration-200"
           >
             Sell a Car
           </Link>
           <Link
             href="/community"
-            className="text-lg font-semibold text-gray-600 hover:text-black transition-colors duration-200"
+            className="lg:text-md 2xl:text-lg font-semibold text-gray-600 hover:text-black transition-colors duration-200"
           >
             Community
           </Link>
           <Link
             href="/about"
-            className="text-lg font-semibold text-gray-600 hover:text-black transition-colors duration-200"
+            className="lg:text-md 2xl:text-lg font-semibold text-gray-600 hover:text-black transition-colors duration-200"
           >
             What&apos;s Cars & Bids?
           </Link>

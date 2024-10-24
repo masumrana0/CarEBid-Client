@@ -65,7 +65,7 @@ const SignUpPage: React.FC<{
         <>
           <p className="mb-3 text-md md:text-lg my-3 text-center">
             Already have an account?{" "}
-            <button onClick={() => setAuthState(1)} className="text-primary">
+            <button onClick={() => setAuthState(0)} className="text-primary">
               Sign in here
             </button>
           </p>

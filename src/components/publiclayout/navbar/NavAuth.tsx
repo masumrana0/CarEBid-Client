@@ -30,7 +30,7 @@ const NavAuth: React.FC = () => {
     <>
       <button
         onClick={showModal}
-        className="px-6 py-3 rounded bg-green-400 hover:bg-green-500 font-[500] text-lg"
+        className="2xl:px-6 2xl:py-3 px-4  py-2 rounded bg-green-400 hover:bg-green-500 font-[500] text-md 2xl:text-lg"
       >
         Sign In
       </button>
@@ -52,9 +52,9 @@ const NavAuth: React.FC = () => {
         centered
         closeIcon={<span style={{ fontSize: "20px" }}>✕</span>}
       >
-        {authState === 0 && <SignUpPage setAuthState={setAuthState} />}
+        {authState === 0 && <SignInPage setAuthState={setAuthState} />}
+        {authState === 1 && <SignUpPage setAuthState={setAuthState} />}
 
-        {authState === 1 && <SignInPage setAuthState={setAuthState} />}
         {authState === 3 && <ForgotPassword setAuthState={setAuthState} />}
       </Modal>
     </>

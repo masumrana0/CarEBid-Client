@@ -54,7 +54,7 @@ const ForgotPassword: React.FC<{
         <h2 className="text-3xl font-bold text-gray-900 ">Forgot Password</h2>
         <button
           className="text-md text-primary my-1"
-          onClick={() => setAuthState(3)}
+          onClick={() => setAuthState(0)}
         >
           Back to Sign In
         </button>

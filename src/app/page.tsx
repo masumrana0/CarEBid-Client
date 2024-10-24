@@ -1,5 +1,5 @@
-import LandingHomePage from "@/components/publicComponents/home/Page";
-import Navbar from "@/components/publicComponents/navbar";
+ 
+import Navbar from "@/components/publiclayout/navbar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ const HomePage = () => {
   return (
     <main className="px-10">
       <Navbar />
-      <LandingHomePage />
+       
     </main>
   );
 };

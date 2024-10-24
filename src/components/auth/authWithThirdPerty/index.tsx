@@ -51,7 +51,7 @@ const AuthWithThirdPerty = () => {
           backgroundColor: "black",
           color: "white",
           width: "100%",
-          marginBottom: "20px",
+         
         }}
       >
         Continue with Apple

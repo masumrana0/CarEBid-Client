@@ -71,7 +71,7 @@ const SignInPage: React.FC<{
         </h2>
         <p className="text-lg text-center mb-6">
           Need to create an account?{" "}
-          <button className="text-primary" onClick={() => setAuthState(0)}>
+          <button className="text-primary" onClick={() => setAuthState(1)}>
             Sign up here
           </button>
         </p>
