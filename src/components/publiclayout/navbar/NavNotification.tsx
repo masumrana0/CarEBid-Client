@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Dropdown, List, Badge } from "antd";
 import { AiOutlineBell } from "react-icons/ai";
 
@@ -35,6 +35,31 @@ const NotificationDropdown: React.FC = () => {
   const [notifications] = useState(dummyNotifications);
   const unreadCount = notifications.length;
 
+  const [dropdownPlacement, setDropdownPlacement] = useState<
+    "bottomRight" | "bottomCenter"
+  >("bottomRight");
+
+  useEffect(() => {
+    const updatePlacement = () => {
+      if (window.innerWidth <= 768) {
+        setDropdownPlacement("bottomCenter");
+      } else {
+        setDropdownPlacement("bottomRight");
+      }
+    };
+
+    // Set initial placement
+    updatePlacement();
+
+    // Listen for window resize
+    window.addEventListener("resize", updatePlacement);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", updatePlacement);
+    };
+  }, []);
+
   const menuItems = notifications.map((item) => ({
     key: item.id,
     label: (
@@ -51,7 +76,7 @@ const NotificationDropdown: React.FC = () => {
       <Dropdown
         menu={{ items: menuItems }}
         trigger={["click"]}
-        placement="bottomRight"
+        placement={dropdownPlacement} // Dynamic placement based on screen size
       >
         <Badge count={unreadCount} overflowCount={9} className="cursor-pointer">
           <AiOutlineBell
@@ -59,7 +84,7 @@ const NotificationDropdown: React.FC = () => {
               (e.currentTarget.style.transform = "scale(1.1)")
             }
             onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-            className="text-2xl  transition-all duration-200 cursor-pointer"
+            className="text-2xl transition-all duration-200 cursor-pointer"
           />
         </Badge>
       </Dropdown>

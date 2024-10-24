@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button, Input, Divider } from "antd";
+import { Modal } from "antd";
 import {
   GoogleOutlined,
   FacebookFilled,
@@ -30,7 +30,7 @@ const NavAuth: React.FC = () => {
     <>
       <button
         onClick={showModal}
-        className="2xl:px-6 2xl:py-3 px-4  py-2 rounded bg-green-400 hover:bg-green-500 font-[500] text-md 2xl:text-lg"
+        className="2xl:px-6 2xl:py-3 px-4  py-2 rounded bg-green-400 hover:bg-green-500 font-[500] md:text-md text-sm 2xl:text-lg"
       >
         Sign In
       </button>
