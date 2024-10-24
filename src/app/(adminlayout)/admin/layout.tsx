@@ -9,9 +9,9 @@ import { CiSettings } from "react-icons/ci";
 import { IDNavMenuItem } from "@/Interface/content";
 import { toggleLayoutSidebar } from "@/Redux/Slices/dashboardLayout/layoutSlice";
 import { DAdminAccountNavigation } from "@/content/DNavigationMenu";
-import LeftSidebar from "@/components/dashboard/sidebar/leftSidebar";
-import DashBoardNav from "@/components/dashboard/navbar";
-import RightSidebar from "@/components/dashboard/sidebar/rightSidebar";
+import LeftSidebar from "@/components/dashboardlayout/sidebar/leftSidebar";
+import DashBoardNav from "@/components/dashboardlayout/navbar";
+import RightSidebar from "@/components/dashboardlayout/sidebar/rightSidebar";
 
 const DashBoardLayout = ({ children }: { children: React.ReactNode }) => {
   // Redux

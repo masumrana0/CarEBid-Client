@@ -6,8 +6,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import PageLoader from "@/components/shared/spinners/PageLoader";
 import { useAppSelector } from "@/Redux/hooks";
-import EmailVerificationAlert from "@/components/dashboard/profile/EmailVerificationAlert";
-import ProfilePictureUploader from "@/components/dashboard/profile/ProfilePictureUploader";
+import EmailVerificationAlert from "@/components/dashboardlayout/profile/EmailVerificationAlert";
+import ProfilePictureUploader from "@/components/dashboardlayout/profile/ProfilePictureUploader";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   // State to handle client-side rendering

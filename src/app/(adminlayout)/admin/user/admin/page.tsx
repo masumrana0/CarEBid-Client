@@ -1,4 +1,4 @@
-import AdminComponentPage from "@/components/dashboard/admin/Page";
+import AdminComponentPage from "@/components/dashboardlayout/admin/Page";
 import React from "react";
 
 const AdminPage = () => {

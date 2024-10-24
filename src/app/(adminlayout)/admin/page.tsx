@@ -1,4 +1,4 @@
-import AdminBoardHome from "@/components/dashboard/adminBoardHome/Page";
+import AdminBoardHome from "@/components/dashboardlayout/adminBoardHome/Page";
 import AdminProtect from "@/components/shared/protectors/AdminProtect";
 import React from "react";
 

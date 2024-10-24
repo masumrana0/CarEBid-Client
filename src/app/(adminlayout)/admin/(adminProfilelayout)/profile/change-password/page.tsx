@@ -1,4 +1,4 @@
-import ChangePassword from "@/components/dashboard/profile/ChangePassword";
+import ChangePassword from "@/components/dashboardlayout/profile/ChangePassword";
 import React from "react";
 
 const ChanagePasswordPage = () => {
