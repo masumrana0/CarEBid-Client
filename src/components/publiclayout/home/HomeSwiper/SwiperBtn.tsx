@@ -13,14 +13,14 @@ export const SwiperNavButtons = () => {
         onClick={() => swiper.slidePrev()}
         aria-label="Previous Slide"
       >
-        <AiOutlineLeft   />
+        <AiOutlineLeft />
       </button>
       <button
         className="p-2 rounded-full bg-white/30 backdrop-blur-md transition-all duration-300 text-gray-700 hover:text-gray-900 hover:bg-white/50 hover:scale-105 active:scale-95 focus:outline-none shadow-lg"
         onClick={() => swiper.slideNext()}
         aria-label="Next Slide"
       >
-        <AiOutlineRight   />
+        <AiOutlineRight />
       </button>
     </div>
   );
