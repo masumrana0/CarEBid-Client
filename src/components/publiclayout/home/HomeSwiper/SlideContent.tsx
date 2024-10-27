@@ -7,7 +7,7 @@ import React from "react";
 const SlideContent: React.FC<{ product: IProduct }> = ({ product }) => {
   return (
     <Link href="/" passHref>
-      <div className="h-[15rem] sm:h-[18rem] lg:h-[22rem] w-full border rounded flex flex-col lg:grid grid-cols-12 overflow-hidden">
+      <div className="h-[15rem] sm:h-[18rem] lg:h-[25rem] w-full border rounded flex flex-col lg:grid grid-cols-12 overflow-hidden">
         {/* Main Image */}
         <div className="col-span-7 overflow-hidden h-1/2 lg:h-full">
           <Image

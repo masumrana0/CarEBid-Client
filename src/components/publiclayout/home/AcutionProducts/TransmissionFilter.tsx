@@ -1,11 +1,22 @@
 "use client";
+import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
+import {
+  generateProductQuery,
+  setTransmission,
+} from "@/Redux/Slices/productSlice";
 import { Select } from "antd";
 import React from "react";
 
 const TransmissionFilter = () => {
+  const dispatch = useAppDispatch();
+  // redux  update product query value
+
   const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
+    dispatch(setTransmission(value));
   };
+
+  const query = useAppSelector((state) => state.productQueryReducer.query);
+  console.log(query);
   return (
     <div>
       <Select

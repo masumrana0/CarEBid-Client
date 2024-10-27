@@ -1,17 +1,25 @@
 "use client";
+import { useAppDispatch } from "@/Redux/hooks";
+import {
+  generateProductQuery,
+  setBodyStyle,
+} from "@/Redux/Slices/productSlice";
 import { Select } from "antd";
 import React from "react";
 
 const BodyStyleFilter = () => {
+  // redux
+  const dispatch = useAppDispatch();
+
   const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
+    dispatch(setBodyStyle(value));
   };
   return (
     <div>
       <Select
         placeholder={<span className="text-gray-900">Body Style</span>}
         // defaultValue="all"
-        style={{ width: 110 }}
+        style={{ width: 150 }}
         onChange={handleChange}
         options={[
           { value: "all", label: "All" },

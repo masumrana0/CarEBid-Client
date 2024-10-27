@@ -27,13 +27,6 @@
   }
 }
 
-:where(.css-dev-only-do-not-override-d2lrxs).ant-select-outlined:not(
-    .ant-select-disabled
-  ):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover
-  .ant-select-selector {
-  @apply !border-primary;
-}
-
 .table-container {
   overflow-x: auto; /* Allows horizontal scrolling if needed */
 }

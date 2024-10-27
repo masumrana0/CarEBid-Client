@@ -14,14 +14,5 @@ export const baseApi = createApi({
   reducerPath: "api",
   baseQuery: axiosBaseQuery({ baseUrl: getBaseUrl() }),
   endpoints: (builder) => ({}),
-  tagTypes: [
-    "user",
-    "profile",
-    "offer",
-    "product",
-    "job",
-    "job-category",
-    "auth",
-    "jobOfWork",
-  ],
+  tagTypes: ["user", "profile", "product", "auth"],
 });
