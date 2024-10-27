@@ -16,12 +16,12 @@ import SlideContent from "./SlideContent";
 // Import navigation buttons dynamically
 const SwiperNavButtons = dynamic(
   () => import("./SwiperBtn").then((mod) => mod.SwiperNavButtons),
-  { ssr: false },
+  { ssr: false }
 );
 
 const HomeSwiper = () => {
   return (
-    <div className="container mx-auto mt-3 relative">
+    <div className=" mt-3 relative">
       <Swiper
         spaceBetween={30}
         effect={"fade"}
