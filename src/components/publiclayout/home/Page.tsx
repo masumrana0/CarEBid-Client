@@ -5,7 +5,7 @@ import BodyStyleFilter from "./AcutionProducts/BodyStyleFilter";
 
 const LandingHomePage = () => {
   return (
-    <div>
+    <div className="container mx-auto">
       <HomeSwiper />
       <AuctionProducts />
     </div>
