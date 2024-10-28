@@ -16,7 +16,7 @@ import SlideContent from "./SlideContent";
 // Import navigation buttons dynamically
 const SwiperNavButtons = dynamic(
   () => import("./SwiperBtn").then((mod) => mod.SwiperNavButtons),
-  { ssr: false }
+  { ssr: false },
 );
 
 const HomeSwiper = () => {

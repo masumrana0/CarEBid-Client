@@ -53,24 +53,24 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         {/* Balance Summary Section */}
         <section className="bg-dark text-white py-3 flex items-center justify-evenly">
           {/* Total Balance */}
-          <div className="text-center">
+          {/* <div className="text-center">
             <h2 className="font-bold text-xs">
-              {profileInfo?.mainBalance} &#x09F3;
+             
             </h2>
             <p className="text-xs lg:text-sm font-semibold">Total Balance</p>
-          </div>
+          </div> */}
           {/* Earning Balance */}
-          <div className="text-center">
+          {/* <div className="text-center">
             <h2 className="font-bold text-xs">
               {profileInfo?.earningBalance} &#x09F3;
             </h2>
             <p className="text-xs lg:text-sm font-semibold">Earning Balance</p>
-          </div>
+          </div> */}
           {/* Total Tasks Completed */}
-          <div className="text-center">
+          {/* <div className="text-center">
             <h2 className="font-bold text-xs">0</h2>
             <p className="text-xs lg:text-sm font-semibold"> Tasks Completed</p>
-          </div>
+          </div> */}
         </section>
 
         {/* Navigation and Profile Info Section */}

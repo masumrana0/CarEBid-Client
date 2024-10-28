@@ -9,11 +9,14 @@ export type IUser = {
   documents?: string[];
   membership?: "free" | "faid";
   contactNo?: string;
-  mainBalance: number; //only for spendable but no withdrawable and non t ransferable
-  earningBalance: number; // withdrawable and transferable to main balance,
-  rechargeEarningBalance?: number; // withdrawable and transferable to main balance, // it's only for bussiness account
   profilePhoto?: string;
   passwordChangedAt?: Date;
   isEmailVerified?: boolean;
   isVerified?: boolean;
+};
+
+export type ICommonProfile = {
+  id: string;
+  name: string;
+  profilePhoto?: string;
 };

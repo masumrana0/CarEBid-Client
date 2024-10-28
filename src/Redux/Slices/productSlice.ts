@@ -42,7 +42,7 @@ const initialState: IInitialState = {
 
 // Utility function to generate query string
 const generateProductQueryString = (
-  params: IProductFilterableField
+  params: IProductFilterableField,
 ): string => {
   const queryParameters: string[] = [];
   for (const [key, value] of Object.entries(params)) {
@@ -107,7 +107,7 @@ export const productQuerySlice = createSlice({
     },
     setSorting: (
       state,
-      action: PayloadAction<"endingSoon" | "newlyListed" | null>
+      action: PayloadAction<"endingSoon" | "newlyListed" | null>,
     ) => {
       state.filter.sort = action.payload;
       state.query = generateProductQueryString(state.filter);
