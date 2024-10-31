@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import {
   generateProductQuery,
   setTransmission,
-} from "@/Redux/Slices/productSlice";
+} from "@/Redux/Slices/productQuerySlice";
 import { Select } from "antd";
 import React from "react";
 

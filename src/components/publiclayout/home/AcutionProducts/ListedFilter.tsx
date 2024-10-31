@@ -1,6 +1,6 @@
 "use client";
 import { useAppDispatch } from "@/Redux/hooks";
-import { setSorting } from "@/Redux/Slices/productSlice";
+import { setSorting } from "@/Redux/Slices/productQuerySlice";
 import React, { useState } from "react";
 
 const ListedFilter = () => {

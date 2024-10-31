@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Dropdown, Button, Select, Space } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { useAppDispatch } from "@/Redux/hooks";
-import { setYearRange } from "@/Redux/Slices/productSlice";
+import { setYearRange } from "@/Redux/Slices/productQuerySlice";
 
 const { Option } = Select;
 
@@ -22,7 +22,7 @@ const YearRangeSelectFilter: React.FC = () => {
       years.push(
         <Option key={year} value={year}>
           {year}
-        </Option>,
+        </Option>
       );
     }
     return years;
