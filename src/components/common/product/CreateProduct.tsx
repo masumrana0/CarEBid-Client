@@ -17,6 +17,7 @@ import { UploadFile } from "antd/lib/upload/interface";
 import ProductDetailForm from "./ProductDetailsForm";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import { setProductFormStep } from "@/Redux/Slices/productSlice";
+import ProductSpecification from "./ProductSpecification";
 
 const { Step } = Steps;
 
@@ -108,6 +109,7 @@ const CreateProductForm = () => {
             </Form.Item>
           </>
         )} */}
+        {currentStep === 2 && <ProductSpecification />}
 
         {/* product additional details  */}
         {/* {currentStep === 3 && (

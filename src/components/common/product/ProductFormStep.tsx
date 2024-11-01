@@ -18,7 +18,7 @@ const ProductFormStep = () => {
   };
 
   return (
-    <div style={{ marginTop: 20 }}>
+    <div className="flex items-center mt-5 gap-2">
       {currentStep < 4 && (
         <Form.Item>
           <Button htmlType="submit" type="primary">
@@ -26,11 +26,7 @@ const ProductFormStep = () => {
           </Button>
         </Form.Item>
       )}
-      {currentStep > 0 && (
-        <Button style={{ margin: "0 8px" }} onClick={prev}>
-          Previous
-        </Button>
-      )}
+      {currentStep > 0 && <Button onClick={prev}>Previous</Button>}
       {currentStep === 4 && (
         <Form.Item>
           <Button type="primary" htmlType="submit">
