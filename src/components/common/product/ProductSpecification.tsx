@@ -24,7 +24,7 @@ const { Option } = Select;
 const ProductSpecification = () => {
   const [form] = Form.useForm();
   const currentStep = useAppSelector(
-    (state) => state.productReducer.setFormStep,
+    (state) => state.productReducer.setFormStep
   );
   const dispatch = useAppDispatch();
 
@@ -69,7 +69,12 @@ const ProductSpecification = () => {
             { required: true, message: "Please select the transmission" },
           ]}
         >
-          <Select placeholder="Select transmission">
+          <Select
+            onChange={(value) => {
+              form.setFieldsValue({ transmission: value }); // Make sure the form state is updated
+            }}
+            placeholder="Select transmission"
+          >
             {productTransmission.map(({ value, label }) => (
               <Option key={value} value={value}>
                 {label}

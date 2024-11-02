@@ -3,9 +3,11 @@ import { setProductFormStep } from "@/Redux/Slices/productSlice";
 import { Button, Form } from "antd";
 import React from "react";
 
-const ProductFormStep = () => {
+const ProductFormStep: React.FC<{ isLoading?: boolean }> = ({
+  isLoading = false,
+}) => {
   const currentStep = useAppSelector(
-    (state) => state.productReducer.setFormStep,
+    (state) => state.productReducer.setFormStep
   );
 
   const dispatch = useAppDispatch();
@@ -32,7 +34,7 @@ const ProductFormStep = () => {
       )}
       {currentStep === 4 && (
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button loading={isLoading} type="primary" htmlType="submit">
             Submit
           </Button>
         </Form.Item>

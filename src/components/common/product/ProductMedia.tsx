@@ -19,42 +19,42 @@ const ProductMedia: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const currentStep = useAppSelector(
-    (state) => state.productReducer.setFormStep
+    (state) => state.productReducer.setFormStep,
   );
 
   // Load initial state from local storage
   useEffect(() => {
     const loadLocalStorage = async () => {
       const savedMainPhoto = JSON.parse(
-        localStorage.getItem("mainPhoto") || "null"
+        localStorage.getItem("mainPhoto") || "null",
       );
       const savedOtherPhotos = JSON.parse(
-        localStorage.getItem("otherPhotos") || "[]"
+        localStorage.getItem("otherPhotos") || "[]",
       );
       const savedDocsPhotos = JSON.parse(
-        localStorage.getItem("docsPhotos") || "[]"
+        localStorage.getItem("docsPhotos") || "[]",
       );
       const savedVideoLinks = JSON.parse(
-        localStorage.getItem("videoLinks") || "[]"
+        localStorage.getItem("videoLinks") || "[]",
       );
 
       if (savedMainPhoto) {
         const mainPhotoFile = createFileObject(
           savedMainPhoto,
           "main-photo",
-          "-1"
+          "-1",
         );
         setMainPhotoFile(mainPhotoFile);
         form.setFieldsValue({ mainPhoto: [mainPhotoFile] }); // Set form field value directly
       }
       const otherPhotosFiles = savedOtherPhotos.map(
-        (url: string, index: number) => createFileObject(url, `other-${index}`)
+        (url: string, index: number) => createFileObject(url, `other-${index}`),
       );
       setOtherPhotos(otherPhotosFiles);
       form.setFieldsValue({ otherPhotos: otherPhotosFiles }); // Set form field value directly
 
       const docsPhotosFiles = savedDocsPhotos.map(
-        (url: string, index: number) => createFileObject(url, `docs-${index}`)
+        (url: string, index: number) => createFileObject(url, `docs-${index}`),
       );
       setDocsPhotos(docsPhotosFiles);
       form.setFieldsValue({ docsPhotos: docsPhotosFiles }); // Set form field value directly
@@ -71,7 +71,7 @@ const ProductMedia: React.FC = () => {
     const storeFilesToLocalStorage = async () => {
       const mainPhotoUrl = await getFileUrl(mainPhotoFile);
       const otherPhotosUrls = await Promise.all(
-        otherPhotoFiles.map(getFileUrl)
+        otherPhotoFiles.map(getFileUrl),
       );
       const docsPhotosUrls = await Promise.all(docsPhotoFiles.map(getFileUrl));
 
@@ -85,7 +85,7 @@ const ProductMedia: React.FC = () => {
   }, [mainPhotoFile, otherPhotoFiles, docsPhotoFiles, videoLinks, form]);
 
   const getFileUrl = async (
-    file: UploadFile | null
+    file: UploadFile | null,
   ): Promise<string | null> => {
     if (!file) return null;
     return (

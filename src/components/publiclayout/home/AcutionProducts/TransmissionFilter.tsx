@@ -1,5 +1,5 @@
 "use client";
-import { productTransmission } from "@/content/product.constant";
+import { filterProductTransmission } from "@/content/product.constant";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import {
   generateProductQuery,
@@ -13,7 +13,10 @@ const TransmissionFilter = () => {
   // redux  update product query value
 
   const handleChange = (value: string) => {
-    dispatch(setTransmission(value));
+    if (!(value == "all")) {
+      dispatch(setTransmission(value));
+    }
+    return;
   };
 
   const query = useAppSelector((state) => state.productQueryReducer.query);
@@ -25,7 +28,7 @@ const TransmissionFilter = () => {
         // defaultValue="all"
         style={{ width: 130 }}
         onChange={handleChange}
-        options={productTransmission}
+        options={filterProductTransmission}
       />
     </div>
   );

@@ -61,8 +61,8 @@ export type IProduct = {
       biddingTime: Date;
     }[];
     biddingDuration: {
-      startBid: Date;
-      endBid: Date;
+      startBid: Date | any;
+      endBid: Date | any;
     };
     minBid: number;
     maxBid: number;

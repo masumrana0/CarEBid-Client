@@ -7,6 +7,7 @@ import { useAppSelector } from "@/Redux/hooks";
 import ProductSpecification from "./ProductSpecification";
 import ProductAddtionalDetails from "./ProductAdditionalDetails";
 import ProductBiddingInfo from "./ProductBiddingInfo";
+import CreateProductSuccessfulResult from "./CreateSuccessfulResult";
 
 const { Step } = Steps;
 
@@ -39,6 +40,8 @@ const CreateProductForm = () => {
         {currentStep === 3 && <ProductAddtionalDetails />}
         {/* Product bidding info */}
         {currentStep === 4 && <ProductBiddingInfo />}
+        {/* succesful result */}
+        {currentStep === 5 && <CreateProductSuccessfulResult />}
       </div>
     </div>
   );

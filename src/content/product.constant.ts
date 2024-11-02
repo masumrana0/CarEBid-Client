@@ -33,9 +33,13 @@ export const productTitleStatus = [
   { value: "non-repairable", label: "Non-Repairable" },
 ];
 
-export const productTransmission = [
+export const filterProductTransmission = [
   { value: "all", label: "All" },
-  { value: "autometic", label: "Autometic" },
+  { value: "automatic", label: "Autometic" },
+  { value: "manual", label: "Manual" },
+];
+export const productTransmission = [
+  { value: "automatic", label: "Autometic" },
   { value: "manual", label: "Manual" },
 ];
 

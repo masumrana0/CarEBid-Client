@@ -132,7 +132,7 @@ const ProductDetailForm = () => {
       {/* product bodyStyle and lancing year */}
       <div className="md:grid grid-cols-2 items-center gap-5 w-full">
         <Form.Item
-          name="bodystyle"
+          name="bodyStyle"
           label="Body Style"
           rules={[
             { required: true, message: "Please select the  body status" },

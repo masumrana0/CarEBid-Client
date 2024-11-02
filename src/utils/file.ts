@@ -19,3 +19,22 @@ export const getBase64 = (file: Blob): Promise<string> =>
     reader.onload = () => resolve(reader.result as string);
     reader.onerror = reject;
   });
+
+
+
+  export function base64ToBlob(base64: string, mimeType: string = 'image/jpeg'): Blob {
+    const byteString = atob(base64.split(',')[1]); // Decode base64 data
+    const byteArray = new Uint8Array(byteString.length);
+    
+    for (let i = 0; i < byteString.length; i++) {
+      byteArray[i] = byteString.charCodeAt(i);
+    }
+  
+    return new Blob([byteArray], { type: mimeType });
+  }
+  
+  export function base64ToFile(base64: string, fileName: string, mimeType: string = 'image/jpeg'): File {
+    const blob = base64ToBlob(base64, mimeType);
+    return new File([blob], fileName, { type: mimeType });
+  }
+  
