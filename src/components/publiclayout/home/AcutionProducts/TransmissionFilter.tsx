@@ -1,4 +1,5 @@
 "use client";
+import { productTransmission } from "@/content/product.constant";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import {
   generateProductQuery,
@@ -24,11 +25,7 @@ const TransmissionFilter = () => {
         // defaultValue="all"
         style={{ width: 130 }}
         onChange={handleChange}
-        options={[
-          { value: "all", label: "All" },
-          { value: "autometic", label: "Autometic" },
-          { value: "manual", label: "Manual" },
-        ]}
+        options={productTransmission}
       />
     </div>
   );

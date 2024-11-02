@@ -5,15 +5,26 @@ import { IProduct } from "@/Interface/product";
 import ProductFormStep from "./ProductFormStep";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import { setProductFormStep } from "@/Redux/Slices/productSlice";
+import {
+  productBodyStyle,
+  productFormStepValueKeys,
+  productTitleStatus,
+} from "@/content/product.constant";
+import {
+  getFromLocalStorage,
+  setToLocalStorageAsStringify,
+} from "@/utils/local-storage";
+import { json } from "stream/consumers";
 
 const { Option } = Select;
 
 const ProductDetailForm = () => {
   const [form] = Form.useForm();
   const currentStep = useAppSelector(
-    (state) => state.productReducer.setFormStep,
+    (state) => state.productReducer.setFormStep
   );
 
+  // Product details: title, make, model, vin, titleStatus, launchingYear, bodystyle
   const dispatch = useAppDispatch();
 
   const next = () => {
@@ -27,7 +38,7 @@ const ProductDetailForm = () => {
 
   // Load initial values from localStorage if they exist
   useEffect(() => {
-    const savedValues = localStorage.getItem("productForm");
+    const savedValues = getFromLocalStorage(productFormStepValueKeys.stepOne);
     if (savedValues) {
       form.setFieldsValue(JSON.parse(savedValues));
     }
@@ -35,24 +46,21 @@ const ProductDetailForm = () => {
 
   // Save form data to localStorage on every change
   const onValuesChange = (changedValues: any, allValues: IProduct) => {
-    localStorage.setItem("productForm", JSON.stringify(allValues));
+    setToLocalStorageAsStringify(productFormStepValueKeys.stepOne, allValues);
   };
+
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: 100 }, (_, i) => currentYear - i);
 
   return (
     <Form
+      className="bg-white p-4 rounded"
       form={form}
       layout="vertical"
       onFinish={onFinish}
       onValuesChange={onValuesChange}
-      initialValues={{
-        title: "",
-        titleStatus: "",
-        make: "",
-        model: "",
-        mileage: "",
-        vin: "",
-      }}
     >
+      {/* product title  */}
       <Form.Item
         name="title"
         label="Title"
@@ -64,32 +72,8 @@ const ProductDetailForm = () => {
         <Input placeholder="Enter product title" />
       </Form.Item>
 
-      <Form.Item
-        name="titleStatus"
-        label="Title Status"
-        rules={[{ required: true, message: "Please select the title status" }]}
-      >
-        <Select placeholder="Select title status">
-          {[
-            "clean (CT)",
-            "salvage",
-            "rebuilt/reconstructed",
-            "junk",
-            "buyback",
-            "bonded",
-            "export only",
-            "odometer rollback",
-            "flood",
-            "non-repairable",
-          ].map((status) => (
-            <Option key={status} value={status}>
-              {status}
-            </Option>
-          ))}
-        </Select>
-      </Form.Item>
-
-      <div className="md:flex items-center gap-5 w-full">
+      {/* propduct make and model */}
+      <div className="md:grid grid-cols-2 items-center gap-5 w-full">
         <Form.Item
           className="w-full"
           name="make"
@@ -115,20 +99,19 @@ const ProductDetailForm = () => {
         </Form.Item>
       </div>
 
-      <div className="md:flex items-center gap-5 w-full">
+      {/* product titleStatus and Vin */}
+      <div className="md:grid grid-cols-2 items-center gap-5 w-full">
         <Form.Item
-          name="mileage"
-          label="Mileage"
-          className="w-full"
+          name="titleStatus"
+          label="Title Status"
           rules={[
-            { required: true, message: "Please enter the mileage" },
-            {
-              pattern: /^\d+$/,
-              message: "Mileage must be a numeric value",
-            },
+            { required: true, message: "Please select the title status" },
           ]}
         >
-          <Input placeholder="Enter mileage" />
+          <Select
+            options={productTitleStatus}
+            placeholder="Select title status"
+          ></Select>
         </Form.Item>
 
         <Form.Item
@@ -144,6 +127,37 @@ const ProductDetailForm = () => {
           ]}
         >
           <Input placeholder="Enter VIN" />
+        </Form.Item>
+      </div>
+
+      {/* product bodyStyle and lancing year */}
+      <div className="md:grid grid-cols-2 items-center gap-5 w-full">
+        <Form.Item
+          name="bodystyle"
+          label="Body Style"
+          rules={[
+            { required: true, message: "Please select the  body status" },
+          ]}
+        >
+          <Select
+            options={productBodyStyle}
+            placeholder="Select body status"
+          ></Select>
+        </Form.Item>
+        <Form.Item
+          name="launchingYear"
+          label="Launching Year"
+          rules={[
+            { required: true, message: "Please select the  body status" },
+          ]}
+        >
+          <Select placeholder="Select Launching Year">
+            {years.map((year) => (
+              <Option key={year} value={year}>
+                {year}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
       </div>
 

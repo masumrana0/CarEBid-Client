@@ -1,9 +1,7 @@
 "use client";
+import { productBodyStyle } from "@/content/product.constant";
 import { useAppDispatch } from "@/Redux/hooks";
-import {
-  generateProductQuery,
-  setBodyStyle,
-} from "@/Redux/Slices/productQuerySlice";
+import { setBodyStyle } from "@/Redux/Slices/productQuerySlice";
 import { Select } from "antd";
 import React from "react";
 
@@ -21,17 +19,7 @@ const BodyStyleFilter = () => {
         // defaultValue="all"
         style={{ width: 150 }}
         onChange={handleChange}
-        options={[
-          { value: "all", label: "All" },
-          { value: "coupe", label: "Coupe" },
-          { value: "convertible", label: "Convertible" },
-          { value: "hatchback", label: "Hatchback" },
-          { value: "sedan", label: "Sedan" },
-          { value: "suv/crossover", label: "SUV/Crossover" },
-          { value: "truck", label: "Truck" },
-          { value: "van/minivan", label: "Van/Minivan" },
-          { value: "wagon", label: "Wagon" },
-        ]}
+        options={productBodyStyle}
       />
     </div>
   );

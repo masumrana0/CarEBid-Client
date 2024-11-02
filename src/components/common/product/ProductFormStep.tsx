@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import { setProductFormStep } from "@/Redux/Slices/productSlice";
 import { Button, Form } from "antd";
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 
 const ProductFormStep = () => {
   const currentStep = useAppSelector(
@@ -18,7 +18,7 @@ const ProductFormStep = () => {
   };
 
   return (
-    <div className="flex items-center mt-5 gap-2">
+    <div className="flex items-center gap-3  ">
       {currentStep < 4 && (
         <Form.Item>
           <Button htmlType="submit" type="primary">
@@ -26,7 +26,14 @@ const ProductFormStep = () => {
           </Button>
         </Form.Item>
       )}
-      {currentStep > 0 && <Button onClick={prev}>Previous</Button>}
+      {currentStep > 0 && (
+        <Form.Item>
+          <Button htmlType="button" onClick={prev}>
+            {" "}
+            Previous
+          </Button>
+        </Form.Item>
+      )}
       {currentStep === 4 && (
         <Form.Item>
           <Button type="primary" htmlType="submit">

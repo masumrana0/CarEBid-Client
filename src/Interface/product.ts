@@ -7,12 +7,12 @@ export type IProduct = {
     others: string[];
     docs: string[];
   };
-  title: string; //
-  make: string; //
-  model: string; //
+  title: string;
+  make: string;
+  model: string;
   mileage: string;
-  vin: string; //
-  titleStatus: //
+  vin: string;
+  titleStatus:
     | "clean (CT)"
     | "salvage"
     | "rebuilt/reconstructed"

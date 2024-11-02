@@ -1,18 +1,12 @@
 "use client";
 import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
-import {
-  Form,
-  Upload,
-  Select,
-  Modal,
-  Button,
-  Row,
-  Col,
-  UploadFile,
-} from "antd";
-import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
+import { Form, Upload, Select, Modal, Button, UploadFile } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import { IMediaState } from "./CreateProduct";
+import ProductFormStep from "./ProductFormStep";
+import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
+import { setProductFormStep } from "@/Redux/Slices/productSlice";
 
 const ProductMedia: React.FC<{
   setMedia: Dispatch<SetStateAction<IMediaState | null>>;
@@ -25,7 +19,10 @@ const ProductMedia: React.FC<{
   const [previewImage, setPreviewImage] = useState<string>("");
   const [previewVisible, setPreviewVisible] = useState(false);
 
-  console.log(videoLinks);
+  const dispatch = useAppDispatch();
+  const currentStep = useAppSelector(
+    (state) => state.productReducer.setFormStep
+  );
 
   // Helper function to convert file to base64
   const getBase64 = (file: Blob): Promise<string> =>
@@ -38,7 +35,7 @@ const ProductMedia: React.FC<{
 
   // Load initial state from local storage
   useEffect(() => {
-    const loadLocalStorage = () => {
+    const loadLocalStorage = async () => {
       const savedMainPhoto = JSON.parse(
         localStorage.getItem("mainPhoto") || "null"
       );
@@ -53,23 +50,32 @@ const ProductMedia: React.FC<{
       );
 
       if (savedMainPhoto) {
-        setMainPhotoFile(createFileObject(savedMainPhoto, "main-photo", "-1"));
+        const mainPhotoFile = createFileObject(
+          savedMainPhoto,
+          "main-photo",
+          "-1"
+        );
+        setMainPhotoFile(mainPhotoFile);
+        form.setFieldsValue({ mainPhoto: [mainPhotoFile] }); // Set form field value directly
       }
-      setOtherPhotos(
-        savedOtherPhotos.map((url: string, index: number) =>
-          createFileObject(url, `other-${index}`)
-        )
+      const otherPhotosFiles = savedOtherPhotos.map(
+        (url: string, index: number) => createFileObject(url, `other-${index}`)
       );
-      setDocsPhotos(
-        savedDocsPhotos.map((url: string, index: number) =>
-          createFileObject(url, `docs-${index}`)
-        )
+      setOtherPhotos(otherPhotosFiles);
+      form.setFieldsValue({ otherPhotos: otherPhotosFiles }); // Set form field value directly
+
+      const docsPhotosFiles = savedDocsPhotos.map(
+        (url: string, index: number) => createFileObject(url, `docs-${index}`)
       );
+      setDocsPhotos(docsPhotosFiles);
+      form.setFieldsValue({ docsPhotos: docsPhotosFiles }); // Set form field value directly
+
       setVideoLinks(savedVideoLinks);
+      form.setFieldsValue({ videoLinks: savedVideoLinks }); // Set form field value directly
     };
 
     loadLocalStorage();
-  }, []);
+  }, [form]);
 
   // Save to local storage whenever there’s a change
   useEffect(() => {
@@ -87,8 +93,7 @@ const ProductMedia: React.FC<{
     };
 
     storeFilesToLocalStorage();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mainPhotoFile, otherPhotoFiles, docsPhotoFiles, videoLinks]);
+  }, [mainPhotoFile, otherPhotoFiles, docsPhotoFiles, videoLinks, form]);
 
   const createFileObject = (
     url: string,
@@ -133,6 +138,10 @@ const ProductMedia: React.FC<{
     }
   };
 
+  const nextStep = () => {
+    dispatch(setProductFormStep(currentStep + 1));
+  };
+
   const handleDocsPhotosChange = ({ fileList }: { fileList: UploadFile[] }) => {
     if (fileList.length <= 10) {
       setDocsPhotos(fileList);
@@ -154,20 +163,32 @@ const ProductMedia: React.FC<{
       <h3>Upload</h3>
     </button>
   );
+
   const validateYouTubeUrl = (url: string) => {
     const youtubeRegex =
       /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
     return youtubeRegex.test(url);
   };
-  useEffect(() => {
-    console.log("Updated Video Links:", videoLinks);
-  }, [videoLinks]);
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    form
+      .validateFields()
+      .then(() => {
+        nextStep();
+      })
+      .catch((errorInfo) => {
+        console.log("Validation Failed:", errorInfo);
+      });
+  };
 
   return (
     <>
-      <Form form={form} layout="vertical" onFinish={handleSubmit}>
+      <Form
+        className="bg-white p-4 rounded"
+        form={form}
+        layout="vertical"
+        onFinish={handleSubmit}
+      >
         <Form.Item
           name="mainPhoto"
           label="Main Photo"
@@ -184,8 +205,8 @@ const ProductMedia: React.FC<{
           </Upload>
         </Form.Item>
 
-        <div className=" md:grid grid-cols-2  gap-4 ">
-          {/* other photo */}
+        <div className="md:grid grid-cols-2 gap-4">
+          {/* Other photos */}
           <Form.Item
             name="otherPhotos"
             label="Other Photos"
@@ -207,8 +228,7 @@ const ProductMedia: React.FC<{
             </Upload>
           </Form.Item>
 
-          {/* other docs  */}
-
+          {/* Documents */}
           <Form.Item
             name="docsPhotos"
             label="Documents"
@@ -249,32 +269,31 @@ const ProductMedia: React.FC<{
         >
           <Select
             mode="tags"
-            value={videoLinks} // Use value, not defaultValue
             placeholder="Add video URLs"
             tokenSeparators={[","]}
             onChange={handleVideoLinksChange}
           />
         </Form.Item>
 
-        <Modal
-          open={previewVisible}
-          title="Preview"
-          footer={null}
-          onCancel={() => setPreviewVisible(false)}
-        >
-          <Image
-            width={500}
-            height={500}
-            alt="preview"
-            style={{ width: "100%" }}
-            src={previewImage}
-          />
-        </Modal>
-
-        <Button type="primary" htmlType="submit" style={{ marginTop: "16px" }}>
-          Submit
-        </Button>
+        {/* <Button type="primary" htmlType="submit">
+          Next Step
+        </Button> */}
+        <ProductFormStep />
       </Form>
+
+      <Modal
+        open={previewVisible}
+        footer={null}
+        onCancel={() => setPreviewVisible(false)}
+      >
+        <Image
+          src={previewImage}
+          alt="Preview"
+          layout="responsive"
+          width={200}
+          height={200}
+        />
+      </Modal>
     </>
   );
 };
