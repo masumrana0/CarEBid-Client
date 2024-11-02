@@ -5,7 +5,7 @@ import React from "react";
 
 const ProductFormStep = () => {
   const currentStep = useAppSelector(
-    (state) => state.productReducer.setFormStep
+    (state) => state.productReducer.setFormStep,
   );
 
   const dispatch = useAppDispatch();

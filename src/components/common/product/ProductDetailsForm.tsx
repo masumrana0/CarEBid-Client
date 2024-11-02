@@ -20,7 +20,7 @@ const { Option } = Select;
 const ProductDetailForm = () => {
   const [form] = Form.useForm();
   const currentStep = useAppSelector(
-    (state) => state.productReducer.setFormStep
+    (state) => state.productReducer.setFormStep,
   );
 
   // Product details: title, make, model, vin, titleStatus, launchingYear, bodystyle

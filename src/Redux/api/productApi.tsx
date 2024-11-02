@@ -5,7 +5,7 @@ const url = "/product";
 
 const productApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    createProduct: build.mutation<any, IProduct>({
+    createProduct: build.mutation({
       query: (data) => ({
         url: url,
         method: "POST",
@@ -21,7 +21,7 @@ const productApi = baseApi.injectEndpoints({
           data: data,
         }),
         invalidatesTags: ["product"],
-      },
+      }
     ),
     getAllProduct: build.query({
       query: (query) => ({

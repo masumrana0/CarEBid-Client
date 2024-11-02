@@ -1,17 +1,14 @@
 "use client";
-import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Upload, Select, Modal, UploadFile } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import Image from "next/image";
-import { IMediaState } from "./CreateProduct";
 import ProductFormStep from "./ProductFormStep";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import { setProductFormStep } from "@/Redux/Slices/productSlice";
 import { createFileObject, getBase64 } from "@/utils/file";
 
-const ProductMedia: React.FC<{
-  setMedia: Dispatch<SetStateAction<IMediaState | null>>;
-}> = ({ setMedia }) => {
+const ProductMedia: React.FC = () => {
   const [form] = Form.useForm();
   const [mainPhotoFile, setMainPhotoFile] = useState<UploadFile | null>(null);
   const [otherPhotoFiles, setOtherPhotos] = useState<UploadFile[]>([]);
@@ -105,7 +102,6 @@ const ProductMedia: React.FC<{
   const handleMainPhotoChange = ({ fileList }: { fileList: UploadFile[] }) => {
     const newMainPhoto = fileList[0] || null;
     setMainPhotoFile(newMainPhoto);
-    setMedia((prev: any) => ({ ...prev, mainPhoto: newMainPhoto }));
   };
 
   const handleOtherPhotosChange = ({
@@ -115,7 +111,6 @@ const ProductMedia: React.FC<{
   }) => {
     if (fileList.length <= 15) {
       setOtherPhotos(fileList);
-      setMedia((prev: any) => ({ ...prev, otherPhotos: fileList }));
     }
   };
 
@@ -126,13 +121,11 @@ const ProductMedia: React.FC<{
   const handleDocsPhotosChange = ({ fileList }: { fileList: UploadFile[] }) => {
     if (fileList.length <= 10) {
       setDocsPhotos(fileList);
-      setMedia((prev: any) => ({ ...prev, docsPhotos: fileList }));
     }
   };
 
   const handleVideoLinksChange = (links: string[]) => {
     setVideoLinks(links);
-    setMedia((prev: any) => ({ ...prev, videoLinks: links }));
   };
 
   const uploadButton = (
@@ -205,7 +198,7 @@ const ProductMedia: React.FC<{
               onChange={handleOtherPhotosChange}
               multiple
             >
-              {otherPhotoFiles.length < 15 && uploadButton}
+              {otherPhotoFiles.length < 20 && uploadButton}
             </Upload>
           </Form.Item>
 

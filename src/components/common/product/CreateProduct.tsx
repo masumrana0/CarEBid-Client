@@ -1,25 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { Steps } from "antd";
-
 import ProductMedia from "./ProductMedia";
-import { UploadFile } from "antd/lib/upload/interface";
 import ProductDetailForm from "./ProductDetailsForm";
-import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
+import { useAppSelector } from "@/Redux/hooks";
 import ProductSpecification from "./ProductSpecification";
 import ProductAddtionalDetails from "./ProductAdditionalDetails";
 import ProductBiddingInfo from "./ProductBiddingInfo";
 
 const { Step } = Steps;
 
-export type IMediaState = {
-  mainPhoto: UploadFile | null;
-  otherPhotos: UploadFile[];
-  docsPhotos: UploadFile[];
-};
 const CreateProductForm = () => {
-  const [fileList, setFileList] = useState<IMediaState | null>(null);
-  const dispatch = useAppDispatch();
   const currentStep = useAppSelector(
     (state) => state.productReducer.setFormStep
   );
@@ -42,7 +33,7 @@ const CreateProductForm = () => {
         {/* product details section  */}
         {currentStep === 0 && <ProductDetailForm />}
         {/*product  Photos & vides section  */}
-        {currentStep === 1 && <ProductMedia setMedia={setFileList} />}
+        {currentStep === 1 && <ProductMedia />}
         {currentStep === 2 && <ProductSpecification />}
         {/* product additional details  */}
         {currentStep === 3 && <ProductAddtionalDetails />}

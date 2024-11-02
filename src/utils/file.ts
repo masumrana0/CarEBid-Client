@@ -3,7 +3,7 @@ import { UploadFile } from "antd";
 export const createFileObject = (
   url: string,
   name: string,
-  uid: string = ""
+  uid: string = "",
 ): UploadFile => ({
   uid,
   name,

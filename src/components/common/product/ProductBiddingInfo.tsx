@@ -9,6 +9,7 @@ import {
   Col,
   Tooltip,
   UploadFile,
+  message,
 } from "antd";
 import { IProduct } from "@/Interface/product";
 import ProductFormStep from "./ProductFormStep";
@@ -18,7 +19,11 @@ import { productFormStepValueKeys } from "@/content/product.constant";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import moment from "moment";
 import { createFileObject } from "@/utils/file";
-import { getFromLocalStorageAsParse } from "@/utils/local-storage";
+import {
+  getFromLocalStorageAsParse,
+  removeFromLocalStorage,
+} from "@/utils/local-storage";
+import { useCreateProductMutation } from "@/Redux/api/productApi";
 
 const ProductBiddingInfo = () => {
   const [form] = Form.useForm();
@@ -30,17 +35,15 @@ const ProductBiddingInfo = () => {
   const [stepFourFormData, setStepFourFormData] = useState<IProduct | null>(
     null
   );
-
+  // step 2 file value
   const [mainPhotoFile, setMainPhotoFile] = useState<UploadFile | null>(null);
   const [otherPhotoFiles, setOtherPhotos] = useState<UploadFile[]>([]);
   const [docsPhotoFiles, setDocsPhotos] = useState<UploadFile[]>([]);
   const [videoLinks, setVideoLinks] = useState<string[]>([]);
 
   // redux
-  const currentStep = useAppSelector(
-    (state) => state.productReducer.setFormStep
-  );
   const dispatch = useAppDispatch();
+  const [createProduct, { isLoading }] = useCreateProductMutation();
 
   // loading all previous data
   useEffect(() => {
@@ -140,22 +143,43 @@ const ProductBiddingInfo = () => {
   };
 
   // handle submit or finish
-  const onFinish = (values: IProduct) => {
-    const formData = new FormData();
+  const onFinish = async (values: IProduct) => {
+    const data = new FormData();
     const allData = {
       ...values,
+      video: videoLinks,
       ...stepOneFormData,
       ...stepThreeFormData,
       ...stepFourFormData,
     };
 
     // appending data
-    formData.append("data", JSON.stringify(allData));
-    formData.append("mainPhoto", mainPhotoFile as any);
-    formData.append("others", otherPhotoFiles as any);
-    formData.append("docs", docsPhotoFiles as any);
+    data.append("data", JSON.stringify(allData));
+    data.append("mainPhoto", JSON.stringify(mainPhotoFile) as any);
+    data.append("others", JSON.stringify(otherPhotoFiles) as any);
+    data.append("docs", JSON.stringify(docsPhotoFiles) as any);
 
-    console.log("Submitted Values:", formData);
+    const res = await createProduct(data).unwrap();
+    console.log(res);
+    console.log(mainPhotoFile);
+
+    if (res?.statusCode === 201) {
+      removeFromLocalStorage(productFormStepValueKeys.stepOne);
+      removeFromLocalStorage(productFormStepValueKeys.stepThree);
+      removeFromLocalStorage(productFormStepValueKeys.stepFour);
+      removeFromLocalStorage("mainPhoto");
+      removeFromLocalStorage("others");
+      removeFromLocalStorage("docs");
+      removeFromLocalStorage("videoLinks");
+    } else {
+      if (res?.error?.message) {
+        console.log(res.error.message);
+      } else {
+        message.error("An unexpected error occurred");
+      }
+    }
+
+    console.log("Submitted Values:", data);
   };
 
   return (
