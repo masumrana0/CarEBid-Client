@@ -16,7 +16,7 @@ const { Option } = Select;
 const ProductAddtionalDetails = () => {
   const [form] = Form.useForm();
   const currentStep = useAppSelector(
-    (state) => state.productReducer.setFormStep
+    (state) => state.productReducer.setFormStep,
   );
   const dispatch = useAppDispatch();
 

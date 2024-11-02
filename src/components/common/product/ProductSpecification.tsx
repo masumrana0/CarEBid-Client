@@ -24,7 +24,7 @@ const { Option } = Select;
 const ProductSpecification = () => {
   const [form] = Form.useForm();
   const currentStep = useAppSelector(
-    (state) => state.productReducer.setFormStep
+    (state) => state.productReducer.setFormStep,
   );
   const dispatch = useAppDispatch();
 

@@ -1,6 +1,15 @@
 "use client";
-import React, { useEffect } from "react";
-import { DatePicker, Form, InputNumber, Input, Row, Col, Tooltip } from "antd";
+import React, { useEffect, useState } from "react";
+import {
+  DatePicker,
+  Form,
+  InputNumber,
+  Input,
+  Row,
+  Col,
+  Tooltip,
+  UploadFile,
+} from "antd";
 import { IProduct } from "@/Interface/product";
 import ProductFormStep from "./ProductFormStep";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
@@ -8,55 +17,145 @@ import { setProductFormStep } from "@/Redux/Slices/productSlice";
 import { productFormStepValueKeys } from "@/content/product.constant";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import moment from "moment";
+import { createFileObject } from "@/utils/file";
+import { getFromLocalStorageAsParse } from "@/utils/local-storage";
 
 const ProductBiddingInfo = () => {
   const [form] = Form.useForm();
+  // essential state
+  const [stepOneFormData, setStepOneFormData] = useState<IProduct | null>(null);
+  const [stepThreeFormData, setStepThreeFormData] = useState<IProduct | null>(
+    null
+  );
+  const [stepFourFormData, setStepFourFormData] = useState<IProduct | null>(
+    null
+  );
+
+  const [mainPhotoFile, setMainPhotoFile] = useState<UploadFile | null>(null);
+  const [otherPhotoFiles, setOtherPhotos] = useState<UploadFile[]>([]);
+  const [docsPhotoFiles, setDocsPhotos] = useState<UploadFile[]>([]);
+  const [videoLinks, setVideoLinks] = useState<string[]>([]);
+
+  // redux
   const currentStep = useAppSelector(
     (state) => state.productReducer.setFormStep
   );
   const dispatch = useAppDispatch();
 
-  // Navigate to the next step
-  const nextStep = () => {
-    dispatch(setProductFormStep(currentStep + 1));
-  };
-
-  // Handle form submission
-  const onFinish = (values: IProduct) => {
-    console.log("Submitted Values:", values);
-    nextStep();
-  };
-
-  // Load initial values from localStorage if they exist
+  // loading all previous data
   useEffect(() => {
-    const savedValues = localStorage.getItem(productFormStepValueKeys.stepFive);
-    if (savedValues) {
-      const parsedValues = JSON.parse(savedValues);
+    const loadFormDataFromLocalStorage = () => {
+      const parseJSON = (key: string, fallback: any) =>
+        JSON.parse(localStorage.getItem(key) || fallback);
 
-      // Convert the date strings to moment objects
-      if (parsedValues.bids?.biddingDuration) {
-        if (parsedValues.bids.biddingDuration.startBid) {
-          parsedValues.bids.biddingDuration.startBid = moment(
-            parsedValues.bids.biddingDuration.startBid
-          );
+      // Load step-5 product bidding info
+      const savedStepFiveData = parseJSON(
+        productFormStepValueKeys.stepFive,
+        "null"
+      );
+      if (savedStepFiveData) {
+        // Convert date strings to moment objects
+        if (savedStepFiveData.bids?.biddingDuration) {
+          const { startBid, endBid } = savedStepFiveData.bids.biddingDuration;
+          savedStepFiveData.bids.biddingDuration.startBid = startBid
+            ? moment(startBid)
+            : undefined;
+          savedStepFiveData.bids.biddingDuration.endBid = endBid
+            ? moment(endBid)
+            : undefined;
         }
-        if (parsedValues.bids.biddingDuration.endBid) {
-          parsedValues.bids.biddingDuration.endBid = moment(
-            parsedValues.bids.biddingDuration.endBid
-          );
-        }
+        form.setFieldsValue(savedStepFiveData);
       }
 
-      form.setFieldsValue(parsedValues);
-    }
-  }, [form]);
-  
-  // Save form data to localStorage on every change
-  const onValuesChange = (changedValues: any, allValues: IProduct) => {
+      // Load product media step-2 data
+      if (parseJSON("mainPhoto", "null")) {
+        setMainPhotoFile(
+          createFileObject(parseJSON("mainPhoto", "null"), "main-photo", "-1")
+        );
+      } else {
+        dispatch(setProductFormStep(1));
+      }
+
+      if (parseJSON("otherPhotos", "[]").length > 0) {
+        setOtherPhotos(
+          parseJSON("otherPhotos", "[]").map((url: string, index: number) =>
+            createFileObject(url, `other-${index}`)
+          )
+        );
+      } else {
+        dispatch(setProductFormStep(1));
+      }
+
+      if (parseJSON("docsPhotos", "[]").length > 0) {
+        setDocsPhotos(
+          parseJSON("docsPhotos", "[]").map((url: string, index: number) =>
+            createFileObject(url, `docs-${index}`)
+          )
+        );
+      } else {
+        dispatch(setProductFormStep(1));
+      }
+
+      if (parseJSON("videoLinks", "[]").length > 0) {
+        setVideoLinks(parseJSON("videoLinks", "[]"));
+      } else {
+        dispatch(setProductFormStep(1));
+      }
+
+      // Load step-1, step-3, and step-4 form data
+      if (getFromLocalStorageAsParse(productFormStepValueKeys.stepOne)) {
+        setStepOneFormData(
+          getFromLocalStorageAsParse(productFormStepValueKeys.stepOne)
+        );
+      } else {
+        dispatch(setProductFormStep(0));
+      }
+
+      if (getFromLocalStorageAsParse(productFormStepValueKeys.stepThree)) {
+        setStepThreeFormData(
+          getFromLocalStorageAsParse(productFormStepValueKeys.stepThree)
+        );
+      } else {
+        dispatch(setProductFormStep(2));
+      }
+
+      if (getFromLocalStorageAsParse(productFormStepValueKeys.stepFour)) {
+        setStepFourFormData(
+          getFromLocalStorageAsParse(productFormStepValueKeys.stepFour)
+        );
+      } else {
+        dispatch(setProductFormStep(3));
+      }
+    };
+
+    loadFormDataFromLocalStorage();
+  }, [dispatch, form]);
+
+  // seting Bidding value
+  const onValuesChange = (_: any, allValues: IProduct) => {
     localStorage.setItem(
       productFormStepValueKeys.stepFive,
       JSON.stringify(allValues)
     );
+  };
+
+  // handle submit or finish
+  const onFinish = (values: IProduct) => {
+    const formData = new FormData();
+    const allData = {
+      ...values,
+      ...stepOneFormData,
+      ...stepThreeFormData,
+      ...stepFourFormData,
+    };
+
+    // appending data
+    formData.append("data", JSON.stringify(allData));
+    formData.append("mainPhoto", mainPhotoFile as any);
+    formData.append("others", otherPhotoFiles as any);
+    formData.append("docs", docsPhotoFiles as any);
+
+    console.log("Submitted Values:", formData);
   };
 
   return (
@@ -70,7 +169,6 @@ const ProductBiddingInfo = () => {
       <Row gutter={[16, 16]}>
         <Col span={24} md={12}>
           <Form.Item
-            className="w-full"
             name={["bids", "minBid"]}
             label={
               <span>

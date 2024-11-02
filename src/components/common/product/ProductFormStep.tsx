@@ -10,9 +10,6 @@ const ProductFormStep = () => {
 
   const dispatch = useAppDispatch();
 
-  const next = () => {
-    dispatch(setProductFormStep(currentStep + 1));
-  };
   const prev = () => {
     dispatch(setProductFormStep(currentStep - 1));
   };
@@ -29,7 +26,6 @@ const ProductFormStep = () => {
       {currentStep > 0 && (
         <Form.Item>
           <Button htmlType="button" onClick={prev}>
-            {" "}
             Previous
           </Button>
         </Form.Item>

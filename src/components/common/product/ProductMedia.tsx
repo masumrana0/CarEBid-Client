@@ -1,12 +1,13 @@
 "use client";
 import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
-import { Form, Upload, Select, Modal, Button, UploadFile } from "antd";
+import { Form, Upload, Select, Modal, UploadFile } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import { IMediaState } from "./CreateProduct";
 import ProductFormStep from "./ProductFormStep";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
 import { setProductFormStep } from "@/Redux/Slices/productSlice";
+import { createFileObject, getBase64 } from "@/utils/file";
 
 const ProductMedia: React.FC<{
   setMedia: Dispatch<SetStateAction<IMediaState | null>>;
@@ -23,15 +24,6 @@ const ProductMedia: React.FC<{
   const currentStep = useAppSelector(
     (state) => state.productReducer.setFormStep
   );
-
-  // Helper function to convert file to base64
-  const getBase64 = (file: Blob): Promise<string> =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = reject;
-    });
 
   // Load initial state from local storage
   useEffect(() => {
@@ -94,17 +86,6 @@ const ProductMedia: React.FC<{
 
     storeFilesToLocalStorage();
   }, [mainPhotoFile, otherPhotoFiles, docsPhotoFiles, videoLinks, form]);
-
-  const createFileObject = (
-    url: string,
-    name: string,
-    uid: string = ""
-  ): UploadFile => ({
-    uid,
-    name,
-    status: "done",
-    url,
-  });
 
   const getFileUrl = async (
     file: UploadFile | null

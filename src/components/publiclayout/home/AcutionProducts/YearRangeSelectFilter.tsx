@@ -22,7 +22,7 @@ const YearRangeSelectFilter: React.FC = () => {
       years.push(
         <Option key={year} value={year}>
           {year}
-        </Option>
+        </Option>,
       );
     }
     return years;

@@ -1,22 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import {
-  Form,
-  Input,
-  InputNumber,
-  Button,
-  Steps,
-  DatePicker,
-  Select,
-} from "antd";
+import { Steps } from "antd";
 
-import { PlusOutlined } from "@ant-design/icons";
-import { IProduct } from "@/Interface/product";
 import ProductMedia from "./ProductMedia";
 import { UploadFile } from "antd/lib/upload/interface";
 import ProductDetailForm from "./ProductDetailsForm";
 import { useAppDispatch, useAppSelector } from "@/Redux/hooks";
-import { setProductFormStep } from "@/Redux/Slices/productSlice";
 import ProductSpecification from "./ProductSpecification";
 import ProductAddtionalDetails from "./ProductAdditionalDetails";
 import ProductBiddingInfo from "./ProductBiddingInfo";
@@ -38,9 +27,9 @@ const CreateProductForm = () => {
   return (
     <div className="container mx-auto shadow-lg p-5">
       <Steps
-        responsive
+        responsive={true}
         current={currentStep}
-        onChange={(step) => dispatch(setProductFormStep(step))}
+        // onChange={(step) => dispatch(setProductFormStep(step))}
       >
         <Step title="Product Details" />
         <Step title="Photos & Videos" />
@@ -57,7 +46,7 @@ const CreateProductForm = () => {
         {currentStep === 2 && <ProductSpecification />}
         {/* product additional details  */}
         {currentStep === 3 && <ProductAddtionalDetails />}
-        {/* Product bidding info */} 
+        {/* Product bidding info */}
         {currentStep === 4 && <ProductBiddingInfo />}
       </div>
     </div>
