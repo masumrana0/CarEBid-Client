@@ -78,13 +78,14 @@ const NotificationDropdown: React.FC = () => {
         trigger={["click"]}
         placement={dropdownPlacement} // Dynamic placement based on screen size
       >
-        <Badge count={unreadCount} overflowCount={9} className="cursor-pointer">
+        <Badge count={unreadCount} overflowCount={9} className="cursor-pointer ">
           <AiOutlineBell
+          
             onMouseEnter={(e) =>
               (e.currentTarget.style.transform = "scale(1.1)")
             }
             onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-            className="text-2xl transition-all duration-200 cursor-pointer"
+            className="text-xl lg:text-2xl transition-all duration-200 cursor-pointer"
           />
         </Badge>
       </Dropdown>

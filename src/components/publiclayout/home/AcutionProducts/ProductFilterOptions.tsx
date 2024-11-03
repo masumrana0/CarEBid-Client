@@ -16,10 +16,16 @@ const ProductFilterOptions = () => {
 
         {/* Filter Controls */}
         <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-2 lg:gap-6 w-full">
-          <div className="flex  flex-row  gap-4 w-full   ">
-            <TransmissionFilter />
-            <BodyStyleFilter />
-            <YearRangeSelectFilter />
+          <div className="flex  flex-wrap  gap-2 lg:gap-4 w-full   ">
+            <div>
+              <TransmissionFilter />
+            </div>
+            <div>
+              <BodyStyleFilter />
+            </div>
+            <div>
+              <YearRangeSelectFilter />
+            </div>
           </div>
 
           {/* Listed Filter Positioned Right on Larger Screens */}

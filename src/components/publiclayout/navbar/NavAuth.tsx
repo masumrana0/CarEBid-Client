@@ -30,7 +30,7 @@ const NavAuth: React.FC = () => {
     <>
       <button
         onClick={showModal}
-        className="2xl:px-6 2xl:py-3 px-4  py-2 rounded bg-green-400 hover:bg-green-500 font-[500] md:text-md text-sm 2xl:text-lg"
+        className="2xl:px-6 2xl:py-3 sm:px-4  sm:py-2 py-2 px-2 rounded bg-green-400 hover:bg-green-500 font-[500] md:text-md sm:text-sm text-xs 2xl:text-lg"
       >
         Sign In
       </button>

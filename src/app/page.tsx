@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 const HomePage = () => {
   return (
-    <main className="px-10">
+    <main className="container mx-auto">
       <Navbar />
       <LandingHomePage />
     </main>

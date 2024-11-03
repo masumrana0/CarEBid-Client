@@ -22,7 +22,7 @@ const productApi = baseApi.injectEndpoints({
           data: data,
         }),
         invalidatesTags: ["product"],
-      }
+      },
     ),
     getAllProduct: build.query({
       query: (query) => ({

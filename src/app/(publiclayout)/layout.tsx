@@ -1,3 +1,4 @@
+import Navbar from "@/components/publiclayout/navbar";
 import React from "react";
 
 const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
@@ -5,9 +6,8 @@ const PublicLayout: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       {children}
-      {/* <Footer /> */}
     </>
   );
 };

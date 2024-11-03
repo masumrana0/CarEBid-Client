@@ -66,19 +66,19 @@ const MobileNavbar = () => {
           <AuctionDropdown />
           <Link
             href="/"
-            className="lg:text-md 2xl:text-lg font-semibold text-gray-800 bg-green-400 2xl:py-2 py-1 px-3 2xl:px-4 rounded-full hover:bg-green-500 transition-colors duration-200"
+            className="lg:text-md tracking-tighter xl:text-lg text-left font-semibold text-gray-800 bg-green-400 lg:py-2 py-1 px-3  rounded-full hover:bg-green-500 transition-colors duration-200"
           >
             Sell a Car
           </Link>
           <Link
             href="/community"
-            className="lg:text-md 2xl:text-lg font-semibold text-gray-600 hover:text-black transition-colors duration-200"
+            className="lg:text-md tracking-tighter xl:text-lg font-semibold text-gray-600 hover:text-black transition-colors duration-200"
           >
             Community
           </Link>
           <Link
             href="/about"
-            className="lg:text-md 2xl:text-lg font-semibold text-gray-600 hover:text-black transition-colors duration-200"
+            className="lg:text-md tracking-tighter xl:text-lg font-semibold text-gray-600 hover:text-black transition-colors duration-200"
           >
             What&apos;s CarsEBids?
           </Link>

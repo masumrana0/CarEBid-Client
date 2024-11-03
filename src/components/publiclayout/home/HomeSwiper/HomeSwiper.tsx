@@ -21,7 +21,7 @@ const SwiperNavButtons = dynamic(
 
 const HomeSwiper = () => {
   return (
-    <div className="mt-3 relative">
+    <div className="md:mt-3 relative">
       <Swiper
         spaceBetween={30}
         effect={"fade"}

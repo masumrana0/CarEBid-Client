@@ -36,7 +36,7 @@ const FILE_LIMITS = {
 const validateFiles = (
   files: File[],
   maxCount: number,
-  fieldName: string
+  fieldName: string,
 ): boolean => {
   if (!files.length) {
     message.error(`${fieldName} is required`);
@@ -55,10 +55,10 @@ const ProductBiddingInfo = () => {
   // Essential state
   const [stepOneFormData, setStepOneFormData] = useState<IProduct | null>(null);
   const [stepThreeFormData, setStepThreeFormData] = useState<IProduct | null>(
-    null
+    null,
   );
   const [stepFourFormData, setStepFourFormData] = useState<IProduct | null>(
-    null
+    null,
   );
 
   // Media files state
@@ -87,7 +87,7 @@ const ProductBiddingInfo = () => {
         // Load step-5 product bidding info
         const savedStepFiveData = parseJSON(
           productFormStepValueKeys.stepFive,
-          null
+          null,
         ) as any;
 
         if (savedStepFiveData) {
@@ -102,7 +102,7 @@ const ProductBiddingInfo = () => {
         }
 
         const stepOne = getFromLocalStorageAsParse(
-          productFormStepValueKeys.stepOne
+          productFormStepValueKeys.stepOne,
         );
         if (!stepOne) {
           dispatch(setProductFormStep(0));
@@ -122,7 +122,7 @@ const ProductBiddingInfo = () => {
         const otherPhotos = parseJSON<string[]>("otherPhotos", []);
         if (otherPhotos.length > 0) {
           const files = otherPhotos.map((url, index) =>
-            base64ToFile(url, `productPhoto-${index}`)
+            base64ToFile(url, `productPhoto-${index}`),
           );
           if (!validateFiles(files, FILE_LIMITS.OTHER_PHOTOS, "Other Photos")) {
             dispatch(setProductFormStep(1));
@@ -135,7 +135,7 @@ const ProductBiddingInfo = () => {
         const docsPhotos = parseJSON<string[]>("docsPhotos", []);
         if (docsPhotos.length > 0) {
           const files = docsPhotos.map((url, index) =>
-            base64ToFile(url, `productDocPhoto-${index}`)
+            base64ToFile(url, `productDocPhoto-${index}`),
           );
           if (
             !validateFiles(files, FILE_LIMITS.DOC_PHOTOS, "Document Photos")
@@ -152,11 +152,11 @@ const ProductBiddingInfo = () => {
         // Load form steps data
 
         const stepThree = getFromLocalStorageAsParse(
-          productFormStepValueKeys.stepThree
+          productFormStepValueKeys.stepThree,
         );
 
         const stepFour = getFromLocalStorageAsParse(
-          productFormStepValueKeys.stepFour
+          productFormStepValueKeys.stepFour,
         );
 
         if (!stepThree) {
@@ -184,7 +184,7 @@ const ProductBiddingInfo = () => {
   const onValuesChange = (_: any, allValues: IProduct) => {
     setToLocalStorageAsStringify(
       productFormStepValueKeys.stepFive,
-      JSON.stringify(allValues)
+      JSON.stringify(allValues),
     );
   };
 
@@ -199,7 +199,7 @@ const ProductBiddingInfo = () => {
         !validateFiles(
           otherPhotoFiles,
           FILE_LIMITS.OTHER_PHOTOS,
-          "Other Photos"
+          "Other Photos",
         )
       )
         return;
@@ -207,7 +207,7 @@ const ProductBiddingInfo = () => {
         !validateFiles(
           docsPhotoFiles,
           FILE_LIMITS.DOC_PHOTOS,
-          "Document Photos"
+          "Document Photos",
         )
       )
         return;
@@ -259,7 +259,7 @@ const ProductBiddingInfo = () => {
       }
     } catch (error) {
       message.error(
-        error instanceof Error ? error.message : "An unexpected error occurred"
+        error instanceof Error ? error.message : "An unexpected error occurred",
       );
     }
   };

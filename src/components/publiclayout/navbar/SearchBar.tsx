@@ -23,7 +23,7 @@ const SearchBar = () => {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="text-sm 2xl:text-md  flex items-center  gap-1 2xl:gap-3 w-[90vw] lg:w-[400px] 2xl:w-[500px] 2xl:py-4 py-3 px-3 bg-gray-200 rounded text-gray-950"
+      className="text-sm 2xl:text-md  flex items-center  gap-1 2xl:gap-3 w-[90vw] lg:w-[400px] 2xl:w-[500px] h-[2.5rem] md:h-[3.3rem]  py-3 px-3 bg-gray-200 rounded text-gray-950"
     >
       <HiOutlineMagnifyingGlass className="text-xl 2xl:text-2xl" />
       <input

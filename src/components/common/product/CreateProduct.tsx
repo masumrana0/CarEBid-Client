@@ -13,7 +13,7 @@ const { Step } = Steps;
 
 const CreateProductForm = () => {
   const currentStep = useAppSelector(
-    (state) => state.productReducer.setFormStep
+    (state) => state.productReducer.setFormStep,
   );
 
   return (

@@ -7,7 +7,7 @@ const ProductFormStep: React.FC<{ isLoading?: boolean }> = ({
   isLoading = false,
 }) => {
   const currentStep = useAppSelector(
-    (state) => state.productReducer.setFormStep
+    (state) => state.productReducer.setFormStep,
   );
 
   const dispatch = useAppDispatch();

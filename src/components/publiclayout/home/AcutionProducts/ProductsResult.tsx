@@ -10,10 +10,10 @@ const ProductsResult = () => {
   const { data } = useGetAllProductQuery(query);
   const meta = data?.data?.meta;
   const products = data?.data?.data;
-  console.log(products, meta);
+  // console.log(products, meta);
 
   return (
-    <div className="grid grid-cols-4 gap-6 mt-6">
+    <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-6">
       {products?.map((product: IProduct) => (
         <ProductCard key={product?._id} product={product} />
       ))}

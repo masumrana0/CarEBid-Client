@@ -71,10 +71,15 @@ const ProfileDropdown: React.FC = () => {
           onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
         >
           <Avatar
-            size={44}
-            src="https://randomuser.me/api/portraits/men/75.jpg" // Replace this with a dynamic image
+            src="https://randomuser.me/api/portraits/men/75.jpg"
             style={{
               border: "2px solid #1890ff",
+              width: "5vw",
+              height: "5vw",
+              maxWidth: "48px",
+              maxHeight: "48px",
+              minWidth: "38px",
+              minHeight: "38px",
             }}
           />
         </div>

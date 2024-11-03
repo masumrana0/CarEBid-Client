@@ -1,5 +1,5 @@
 import type { MenuProps } from "antd";
-import { Button, Dropdown, Space } from "antd";
+import { Dropdown } from "antd";
 import Link from "next/link";
 const AuctionDropdown = () => {
   const items: MenuProps["items"] = [
@@ -31,7 +31,7 @@ const AuctionDropdown = () => {
   return (
     <div>
       <Dropdown menu={{ items }} placement="bottomLeft" arrow>
-        <button className="font-semibold text-md lg:text-lg  text-gray-600 hover:text-black duration-200 ">
+        <button className="font-semibold text-md lg:text-lg tracking-tighter  text-gray-600 hover:text-black duration-200 ">
           Auction
         </button>
       </Dropdown>
